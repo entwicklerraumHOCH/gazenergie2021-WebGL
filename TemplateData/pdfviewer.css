@@ -1,0 +1,242 @@
+#pdf-viewer-container {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pdf-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pdf-viewer {
+  position: relative;
+  flex: 1;
+  padding: 4px;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+}
+
+#pdf-tools {
+  position: sticky;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 64px;
+  display: flex;
+  background: #00af50;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toolbarText {
+  margin: 0;
+  padding: 0 4px;
+  border-width: 0;
+  color: white;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 1em;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+button.toolbarButton {
+  cursor: pointer;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  color: white;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #00af50;
+}
+
+button.toolbarButton:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.toolbarButton[disabled] {
+  cursor: initial;
+  opacity: 0.3;
+}
+
+.toolbarButton[disabled]:hover {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#pdf-title,
+span.page-controls,
+span.zoom-controls,
+span.fit-controls {
+  padding: 0 10px;
+}
+
+#pdf-title {
+  padding-left: 24px;
+}
+
+span.page-controls,
+span.zoom-controls,
+span.page-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+span.page-controls {
+  flex: 1;
+}
+
+span.fit-controls {
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.toolbarButton.pageUp,
+.toolbarButton.pageDown,
+.toolbarButton.zoomIn,
+.toolbarButton.zoomOut,
+.toolbarButton.fitToPage,
+.toolbarButton.fitToWidth {
+  background-size: 24px;
+}
+
+.toolbarButton.pageUp {
+  background-image: url(images/arrow-left.png);
+}
+
+.toolbarButton.pageDown {
+  background-image: url(images/arrow-right.png);
+}
+
+.toolbarButton.zoomOut {
+  background-image: url(images/minus.png);
+}
+
+.toolbarButton.zoomIn {
+  background-image: url(images/plus.png);
+}
+
+.toolbarButton.fitToPage {
+  background-image: url(images/fit-to-page.png);
+}
+
+.toolbarButton.fitToWidth {
+  background-image: url(images/fit-to-width.png);
+}
+
+.toolbarButton.close {
+  position: absolute;
+  top: 1.5em;
+  right: 1.5em;
+  bottom: auto;
+  left: auto;
+  width: 45px;
+  height: 45px;
+  background-image: url(back-button.png);
+  background-size: 45px;
+  border-radius: 100px;
+}
+
+canvas {
+  margin: auto;
+  display: block;
+}
+
+.pdfViewer .page .loadingIcon {
+  width: 2.9rem;
+  height: 2.9rem;
+  background: url("spinner.png") no-repeat left top / 38rem;
+  border: medium none;
+  animation: 1s steps(10, end) 0s normal none infinite moveDefault;
+  display: block;
+  position: absolute;
+  top: calc((100% - 2.9rem) / 2);
+  left: calc((100% - 2.9rem) / 2);
+}
+
+@keyframes moveDefault {
+  from {
+    background-position: 0 top;
+  }
+
+  to {
+    background-position: -39rem top;
+  }
+}
+
+#pdf-loading-bar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 10px;
+  border-radius: 20px;
+  background: rgba(0, 175, 80, 0.2);
+  border-radius: 8px;
+}
+
+#pdf-loading-bar .progress {
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #00af50;
+  overflow: hidden;
+  transition: width 200ms;
+}
+
+#pdf-loading-bar.hidden {
+  opacity: 0;
+}
+
+@keyframes progressIndeterminate {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+#pdf-loading-bar .progress.indeterminate {
+  background-color: rgba(153, 153, 153, 1);
+  transition: none;
+}
+
+#pdf-loading-bar .indeterminate .glimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 5rem;
+  background-image: linear-gradient(
+    to right,
+    rgba(153, 153, 153, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(153, 153, 153, 1) 100%
+  );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  animation: progressIndeterminate 2s linear infinite;
+}

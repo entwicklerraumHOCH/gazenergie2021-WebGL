@@ -44,7 +44,7 @@
   padding: 0 4px;
   border-width: 0;
   color: white;
-  font-family: Gilroy;
+  font-family: "Gilroy", Arial, Helvetica, sans-serif !important;
   font-style: normal;
   font-weight: 800;
   font-size: 16px;

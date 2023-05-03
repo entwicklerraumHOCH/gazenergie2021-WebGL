@@ -137,6 +137,7 @@
         <div id="unity-mobile-warning">
           WebGL builds are not supported on mobile devices.
         </div>
+        <div id="unity-mute-button" class="not-muted"></div>
         <div id="unity-fullscreen-button"></div>
       </div>
     </div>
@@ -166,11 +167,11 @@
             }
 
             var buildUrl = "Build";
-            var loaderUrl = buildUrl + "/gazenergie2021-webgl.loader.js";
+            var loaderUrl = buildUrl + "/20230424.loader.js";
             var config = {
-              dataUrl: buildUrl + "/gazenergie2021-webgl.data",
-              frameworkUrl: buildUrl + "/gazenergie2021-webgl.framework.js",
-              codeUrl: buildUrl + "/gazenergie2021-webgl.wasm",
+              dataUrl: buildUrl + "/20230424.data",
+              frameworkUrl: buildUrl + "/20230424.framework.js",
+              codeUrl: buildUrl + "/20230424.wasm",
               streamingAssetsUrl: "StreamingAssets",
               companyName: "DefaultCompany",
               productName: "gazenergie2021",
@@ -182,6 +183,7 @@
             var loadingBar = document.querySelector("#unity-loading-bar");
             var progressBarFull = document.querySelector("#unity-progress-bar-full");
             var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+            var muteButton = document.querySelector("#unity-mute-button");
             var mobileWarning = document.querySelector("#unity-mobile-warning");
 
             // By default Unity keeps WebGL canvas render target size matched with
@@ -218,8 +220,17 @@
                 unityInstance.SendMessage('AppLogic', 'SetLocale', findLocale());
 
                 fullscreenButton.onclick = () => {
-                  container.requestFullscreen();
+                  if (!document.fullscreenElement) {
+                    container.requestFullscreen();
+                  } else if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                  }
                 };
+
+                muteButton.onclick = ()=>{
+                  unityInstance.SendMessage('AppLogic', 'ToggleMute');
+                }
+                
               }).catch((message) => {
                 alert(message);
               });

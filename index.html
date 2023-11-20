@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TJXT5KN');</script>
+<!-- End Google Tag Manager -->
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Unity WebGL Player | gazenergie2021</title>
@@ -16,8 +23,12 @@
     />
   </head>
   <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJXT5KN" 
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
     <div id="unity-app">
-      <div id="unity-container" class="unity-desktop">
+      <div id="unity-container" class="unity-desktop" style="position:relative">
         <canvas
           id="unity-canvas"
           width="1110"
@@ -135,7 +146,7 @@
         </div>
 
         <div id="unity-mobile-warning">
-          This application is not optimized for mobile devices.
+          WebGL builds are not supported on mobile devices.
         </div>
         <div id="unity-mute-button" class="not-muted"></div>
         <div id="unity-ticker-button" class="ticker-off"></div>
@@ -148,8 +159,11 @@
     <script src="TemplateData/src/PdfViewer.js"></script>
     <script src="TemplateData/src/VideoViewer.js"></script>
     <script src="TemplateData/src/GalleryViewer.js"></script>
+<script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
     <script>
-
+var pymChild = new pym.Child({ id: 'gazenergiepartner-wrap' });
+pymChild.sendHeight();
+//pymChild.sendHeight();
             function findLocale()
             {
               if(location.toString().match(/\/de\//gm))
@@ -254,6 +268,7 @@
               });
             };
             document.body.appendChild(script);
+//pymChild.sendHeight();
     </script>
   </body>
 </html>
